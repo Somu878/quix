@@ -14,14 +14,14 @@ export function TradeView({ market }: { market: string }) {
         klineData = await getKlines(
           market,
           "1h",
-          Math.floor((new Date().getTime() - 1000 * 60 * 60 * 24 * 7) / 1000),
-          Math.floor(new Date().getTime() / 1000)
+          Math.floor((new Date().getTime() - 1000 * 60 * 60 * 24 * 7) / 1000), //time stamp for 7 days ago
+          Math.floor(new Date().getTime() / 1000) // current time stamp
         );
       } catch (e) {}
 
       if (chartRef) {
         if (chartManagerRef.current) {
-          chartManagerRef.current.destroy();
+          chartManagerRef.current.destroy(); // if a chart already exists
         }
 
         const chartManager = new ChartManager(

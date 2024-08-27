@@ -1,0 +1,104 @@
+[
+    {
+        "name": "Bitcoin",
+        "symbol": "BTC",
+        "icon": "https://backpack.exchange/coins/btc.svg",
+        "link": "/trade/BTC_USDC"
+    },
+    {
+        "name": "Ethereum",
+        "symbol": "ETH",
+        "icon": "https://backpack.exchange/coins/eth.svg",
+        "link": "/trade/ETH_USDC"
+    },
+    {
+        "name": "Solana",
+        "symbol": "SOL",
+        "icon": "https://backpack.exchange/coins/sol.svg",
+        "link": "/trade/SOL_USDC"
+    },
+    {
+        "name": "Aave",
+        "symbol": "AAVE",
+        "icon": "https://backpack.exchange/coins/aave.svg",
+        "link": "/trade/AAVE_USDC"
+    },
+    {
+        "name": "Chainlink",
+        "symbol": "LINK",
+        "icon": "https://backpack.exchange/coins/link.svg",
+        "link": "/trade/LINK_USDC"
+    },
+    {
+        "name": "Render",
+        "symbol": "RENDER",
+        "icon": "https://backpack.exchange/coins/render.svg",
+        "link": "/trade/RENDER_USDC"
+    },
+    {
+        "name": "LayerZero",
+        "symbol": "ZRO",
+        "icon": "https://backpack.exchange/coins/zro.svg",
+        "link": "/trade/ZRO_USDC"
+    },
+    {
+        "name": "Jito",
+        "symbol": "JTO",
+        "icon": "https://backpack.exchange/coins/jto.svg",
+        "link": "/trade/JTO_USDC"
+    },
+    {
+        "name": "io.net",
+        "symbol": "IO",
+        "icon": "https://backpack.exchange/coins/io.svg",
+        "link": "/trade/IO_USDC"
+    },
+    {
+        "name": "Dogwifhat",
+        "symbol": "WIF",
+        "icon": "https://backpack.exchange/coins/wif.svg",
+        "link": "/trade/WIF_USDC"
+    },
+    {
+        "name": "Lido",
+        "symbol": "LDO",
+        "icon": "https://backpack.exchange/coins/ldo.svg",
+        "link": "/trade/LDO_USDC"
+    },
+    {
+        "name": "Tether",
+        "symbol": "USDT",
+        "icon": "https://backpack.exchange/coins/usdt.svg",
+        "link": "/trade/USDT_USDC"
+    },
+    {
+        "name": "Ondo",
+        "symbol": "ONDO",
+        "icon": "https://backpack.exchange/coins/ondo.svg",
+        "link": "/trade/ONDO_USDC"
+    },
+    {
+        "name": "PYTH",
+        "symbol": "PYTH",
+        "icon": "https://backpack.exchange/coins/pyth.svg",
+        "link": "/trade/PYTH_USDC"
+    },
+    {
+        "name": "Shuffle",
+        "symbol": "SHFL",
+        "icon": "https://backpack.exchange/coins/shfl.svg",
+        "link": "/trade/SHFL_USDC"
+    },
+    {
+        "name": "Bonk",
+        "symbol": "BONK",
+        "icon": "https://backpack.exchange/coins/bonk.svg",
+        "link": "/trade/BONK_USDC"
+    },
+    {
+        "name": "Shiba Inu",
+        "symbol": "SHIB",
+        "icon": "https://backpack.exchange/coins/shib.svg",
+        "link": "/trade/SHIB_USDC"
+    }
+]

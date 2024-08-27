@@ -8,6 +8,7 @@ import Head from "next/head";
 
 export const MarketBar = ({ market }: { market: string }) => {
   const [ticker, setTicker] = useState<Ticker | null>(null);
+
   useEffect(() => {
     getTicker(market).then(setTicker);
     SignalingManager.getInstance().registerCallback(
@@ -116,18 +117,19 @@ export const MarketBar = ({ market }: { market: string }) => {
 };
 
 function Tickers({ market }: { market: string }) {
+  const [asset, m] = market.split("_");
   return (
     <div className="flex h-[60px] shrink-0 space-x-4">
       <div className="flex flex-row relative ml-2 -mr-4">
         <Image
-          alt="SOL Logo"
+          alt="Logo"
           loading="lazy"
           width={25}
           height={24}
           decoding="async"
           data-nimg="1"
           className="z-10 rounded-full h-6 w-6 mt-4 outline-baseBackgroundL1"
-          src="/sol.webp"
+          src={`https://backpack.exchange/coins/${asset.toLowerCase()}.svg`}
         />
         <Image
           alt="USDC Logo"
@@ -137,7 +139,7 @@ function Tickers({ market }: { market: string }) {
           decoding="async"
           data-nimg="1"
           className="h-6 w-6 -ml-2 mt-4 rounded-full"
-          src="/usdc.webp"
+          src={`https://backpack.exchange/coins/${m.toLowerCase()}.svg`}
         />
       </div>
       <button type="button" className="react-aria-Button" data-rac="">
