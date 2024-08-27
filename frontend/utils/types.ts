@@ -38,3 +38,17 @@ export interface Ticker {
   trades: string;
   volume: string;
 }
+export interface Assetchip {
+  name: string;
+  symbol: string;
+  icon: string;
+  link: string;
+}
+
+export interface klineData {
+  price: string;
+  marketCap: string;
+  volume: string;
+  change: Number;
+  price24: Number[];
+}

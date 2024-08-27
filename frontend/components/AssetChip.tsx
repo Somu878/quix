@@ -1,10 +1,11 @@
 "use client";
 import { formatCurrency, generateTotalSupply } from "@/utils/helpers";
 import { getKlines } from "@/utils/httpClient";
-import { KLine } from "@/utils/types";
+import { KLine, klineData, Assetchip } from "@/utils/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import LineChart from "./LineChart";
 
 export default function AssetChip(chipData: Assetchip) {
   const router = useRouter();
@@ -20,12 +21,14 @@ export default function AssetChip(chipData: Assetchip) {
           Math.floor(new Date().getTime() / 1000) // current timestamp
         );
         if (res && res.length > 0) {
+          const priceGraph = res.map((i) => Number(i.close));
+
           const latestData: Partial<KLine> = res[res.length - 1];
 
           const oldestData: Partial<KLine> = res[0];
           const totalVolume = res.reduce((sum, item) => {
-            const volume = Number(item.volume); // Convert string to number
-            return sum + (isNaN(volume) ? 0 : volume); // Add to sum, handle NaN cases
+            const volume = Number(item.volume);
+            return sum + (isNaN(volume) ? 0 : volume);
           }, 0);
           const change24 = (
             ((Number(latestData?.close) - Number(oldestData?.close)) /
@@ -34,7 +37,6 @@ export default function AssetChip(chipData: Assetchip) {
           ).toFixed(2);
           const totalsupply =
             Number(generateTotalSupply()) * Number(latestData?.close);
-          console.log(latestData, oldestData, change24, totalVolume);
 
           setKlineData((prev) => ({
             price: latestData?.close ?? prev?.price ?? " ",
@@ -44,7 +46,7 @@ export default function AssetChip(chipData: Assetchip) {
               prev?.volume ??
               " ",
             change: Number(change24) ?? prev?.change ?? " ",
-            price24: latestData?.close ?? prev?.price24 ?? " ",
+            price24: priceGraph ?? prev?.price24 ?? [],
           }));
         }
       } catch (error) {
@@ -53,7 +55,20 @@ export default function AssetChip(chipData: Assetchip) {
     };
     init();
   }, [chipData.symbol]);
-
+  const data = {
+    labels: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+      22, 23, 24,
+    ],
+    datasets: [
+      {
+        data: klineData?.price24,
+        fill: false,
+        borderColor: Number(klineData?.change) > 0 ? "green" : "red",
+        tension: 0.2,
+      },
+    ],
+  };
   return (
     <tr
       className="cursor-pointer border-t border-gray-800 hover:bg-slate-950"
@@ -90,29 +105,14 @@ export default function AssetChip(chipData: Assetchip) {
       </td>
       <td
         className={`px-2 py-3 text-right first:pl-7 first:pr-0 last:pl-0 last:pr-7 ${
-          Number(klineData?.change) > 0 ? "text-white" : "text-red-500"
+          Number(klineData?.change) > 0 ? "text-green-500" : "text-red-500"
         } `}
       >
-        {klineData?.change ? `${klineData.change}%` : "-"}
+        {klineData?.change ? `${klineData.change}%` : "0"}
       </td>
-      <td className=" py-3 first:pl-7 text-right first:pr-0 last:pl-0 last:pr-2">
-        {klineData?.price24 ? `${klineData.price24}` : "-"}
+      <td className=" py-2 flex justify-center items-center first:pl-0  last:pl-0   ">
+        {klineData?.price24 ? <LineChart data={data} /> : "-"}
       </td>
     </tr>
   );
-}
-
-interface Assetchip {
-  name: string;
-  symbol: string;
-  icon: string;
-  link: string;
-}
-
-interface klineData {
-  price: string;
-  marketCap: string;
-  volume: string;
-  change: Number;
-  price24: string;
 }

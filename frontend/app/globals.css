@@ -33,11 +33,11 @@ body {
 }
 @layer components {
   .text-baseTextMedEmphasis {
-    @apply text-gray-600; /* Example: Applying medium emphasis text color */
+    @apply text-gray-500; /* Example: Applying medium emphasis text color */
   }
 
   .table-h {
-    @apply px-2 py-3 text-sm font-normal text-baseTextMedEmphasis 
+    @apply px-2 py-3 text-sm font-medium text-baseTextMedEmphasis 
       first:pl-7 first:pr-0 last:pl-0 last:pr-7; /* Applying padding and text styles */
   }
 }
