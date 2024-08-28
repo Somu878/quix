@@ -1,5 +1,6 @@
 "use client";
 import { MarketBar } from "@/components/MarketBar";
+import { SwapUI } from "@/components/SwapUI";
 import { TradeView } from "@/components/TradeView";
 import { useParams } from "next/navigation";
 export default function Page() {
@@ -21,7 +22,7 @@ export default function Page() {
       <div className="w-[1px] flex-col border-slate-800 border-l"></div>
       <div>
         <div className="flex flex-col w-[250px]">
-          {/* <SwapUI market={market as string} /> */}
+          <SwapUI market={market as string} />
         </div>
       </div>
     </div>
