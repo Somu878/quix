@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Appbar from "@/components/Appbar";
 import DisclaimerModal from "@/components/DisclaimerModel";
+import MobileCheck from "@/components/MobileCheck";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Appbar />
-        {children}
-        <DisclaimerModal />
+        <MobileCheck>
+          <Appbar />
+          {children}
+          <DisclaimerModal />
+        </MobileCheck>
       </body>
     </html>
   );

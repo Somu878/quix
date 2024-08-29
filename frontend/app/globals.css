@@ -5,6 +5,13 @@
   .text-balance {
     text-wrap: balance;
   }
+  .text-baseTextMedEmphasis {
+    @apply text-gray-500;
+  }
+  .table-h {
+    @apply px-2 py-3 text-sm font-medium text-baseTextMedEmphasis 
+    first:pl-7 first:pr-0 last:pl-0 last:pr-7;
+  }
   .loader {
     @apply w-12 h-12 rounded-full inline-block border-t-2 border-r-2 box-border;
     border-color: white transparent transparent transparent;

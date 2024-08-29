@@ -27,7 +27,7 @@ export function SwapUI({ market }: { market: string }) {
                 <div className="flex items-center justify-between flex-row ">
                   <p className="text-xs font-normal ">Available Balance</p>
                   <p className="font-medium text-xs text-baseTextHighEmphasis">
-                    00.00 USDC
+                    00.00 {activeTab == "Buy" ? `${m}` : `${asset}`}
                   </p>
                 </div>
               </div>
