@@ -19,3 +19,9 @@ export function generateTotalSupply(): string {
     Math.floor(Math.random() * (maxSupply - minSupply + 1)) + minSupply;
   return String(totalSupply);
 }
+
+export function formatDate(t: string) {
+  const date = new Date(Number(t));
+  const time = date.toTimeString().split(" ")[0];
+  return String(time);
+}

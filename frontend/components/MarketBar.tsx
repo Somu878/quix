@@ -1,19 +1,22 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import { Ticker } from "@/utils/types";
 import { getTicker } from "../utils/httpClient";
 import { SignalingManager } from "@/utils/SignalManager";
 import Image from "next/image";
 import Head from "next/head";
+import { currentState } from "@/lib/store/atom";
+import { atom, useRecoilState } from "recoil";
 
 export const MarketBar = ({ market }: { market: string }) => {
   const [ticker, setTicker] = useState<Ticker | null>(null);
-
+  const [currentPrice, setCurrentPrice] = useRecoilState(currentState);
   useEffect(() => {
     getTicker(market).then(setTicker);
     SignalingManager.getInstance().registerCallback(
       "ticker",
       (data: Partial<Ticker>) => {
+        setCurrentPrice(data?.lastPrice ?? ticker?.lastPrice ?? "");
         setTicker((prevTicker) => ({
           firstPrice: data?.firstPrice ?? prevTicker?.firstPrice ?? "",
           high: data?.high ?? prevTicker?.high ?? "",

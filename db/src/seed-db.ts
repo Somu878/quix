@@ -1,17 +1,17 @@
-const { Client } = require('pg');
+const { Client } = require("pg");
 
 const client = new Client({
-    user: 'your_user',
-    host: 'localhost',
-    database: 'my_database',
-    password: 'your_password',
-    port: 5432,
+  user: process.env.DB_USER || "your_user",
+  host: process.env.DB_HOST || "timescaledb",
+  database: process.env.DB_NAME || "my_database",
+  password: process.env.DB_PASSWORD || "your_password",
+  port: Number(process.env.DB_PORT) || 5432,
 });
 
 async function initializeDB() {
-    await client.connect();
+  await client.connect();
 
-    await client.query(`
+  await client.query(`
         DROP TABLE IF EXISTS "tata_prices";
         CREATE TABLE "tata_prices"(
             time            TIMESTAMP WITH TIME ZONE NOT NULL,
@@ -23,7 +23,7 @@ async function initializeDB() {
         SELECT create_hypertable('tata_prices', 'time', 'price', 2);
     `);
 
-    await client.query(`
+  await client.query(`
         CREATE MATERIALIZED VIEW IF NOT EXISTS klines_1m AS
         SELECT
             time_bucket('1 minute', time) AS bucket,
@@ -37,7 +37,7 @@ async function initializeDB() {
         GROUP BY bucket, currency_code;
     `);
 
-    await client.query(`
+  await client.query(`
         CREATE MATERIALIZED VIEW IF NOT EXISTS klines_1h AS
         SELECT
             time_bucket('1 hour', time) AS bucket,
@@ -51,7 +51,7 @@ async function initializeDB() {
         GROUP BY bucket, currency_code;
     `);
 
-    await client.query(`
+  await client.query(`
         CREATE MATERIALIZED VIEW IF NOT EXISTS klines_1w AS
         SELECT
             time_bucket('1 week', time) AS bucket,
@@ -65,8 +65,8 @@ async function initializeDB() {
         GROUP BY bucket, currency_code;
     `);
 
-    await client.end();
-    console.log("Database initialized successfully");
+  await client.end();
+  console.log("Database initialized successfully");
 }
 
 initializeDB().catch(console.error);

@@ -1,3 +1,5 @@
+import React from "react";
+
 export const metadata = {
   title: "Trade - Quix: Crypto Exchange | Bitcoin,Solona,Etherum,Shib...",
 };

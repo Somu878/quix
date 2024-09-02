@@ -1,25 +1,24 @@
-import { Client } from 'pg'; 
+import { Client } from "pg";
 
 const client = new Client({
-    user: 'your_user',
-    host: 'localhost',
-    database: 'my_database',
-    password: 'your_password',
-    port: 5432,
+  user: process.env.DB_USER || "your_user",
+  host: process.env.DB_HOST || "localhost",
+  database: process.env.DB_NAME || "my_database",
+  password: process.env.DB_PASSWORD || "your_password",
+  port: Number(process.env.DB_PORT) || 5432,
 });
 client.connect();
 
 async function refreshViews() {
+  await client.query("REFRESH MATERIALIZED VIEW klines_1m");
+  await client.query("REFRESH MATERIALIZED VIEW klines_1h");
+  await client.query("REFRESH MATERIALIZED VIEW klines_1w");
 
-    await client.query('REFRESH MATERIALIZED VIEW klines_1m');
-    await client.query('REFRESH MATERIALIZED VIEW klines_1h');
-    await client.query('REFRESH MATERIALIZED VIEW klines_1w');
-
-    console.log("Materialized views refreshed successfully");
+  console.log("Materialized views refreshed successfully");
 }
 
 refreshViews().catch(console.error);
 
 setInterval(() => {
-    refreshViews()
-}, 1000 * 10 );
+  refreshViews();
+}, 1000 * 10);

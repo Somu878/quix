@@ -28,11 +28,17 @@ services:
     container_name: api-gate-quix
     ports:
       - "3000:3000"
-    depends_on:
-      - redis
-      - timescaledb
     networks:
       - quix-network
+    depends_on:
+      - timescaledb
+    environment:
+      DB_USER: your_user
+      DB_HOST: timescaledb
+      DB_NAME: my_database
+      DB_PASSWORD: your_password
+      DB_PORT: 5432
+      BASE_URL: redis://localhost:6379
 
   db:
     image: db-quix
@@ -40,12 +46,21 @@ services:
     depends_on:
       - redis
       - timescaledb
+    environment:
+      DB_USER: your_user
+      DB_HOST: timescaledb
+      DB_NAME: my_database
+      DB_PASSWORD: your_password
+      DB_PORT: 5432
+      BASE_URL: redis://localhost:6379
     networks:
       - quix-network
 
   engine:
     image: engine-quix
     container_name: engine-quix
+    environment:
+      REDIS_HOST: redis://localhost:6379
     depends_on:
       - redis
       - timescaledb
@@ -55,6 +70,8 @@ services:
   mm:
     image: mm-quix
     container_name: mm-quix
+    environment:
+      BASE_URL: http://localhost:3000
     depends_on:
       - redis
       - timescaledb
