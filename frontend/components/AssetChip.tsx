@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import LineChart from "./LineChart";
+import { icons } from "lucide-react";
 
 export default function AssetChip(chipData: Assetchip) {
   const router = useRouter();
@@ -78,7 +79,7 @@ export default function AssetChip(chipData: Assetchip) {
         <div className="flex gap-3">
           <div className="flex flex-col items-center justify-center">
             <Image
-              src={chipData.icon}
+              src={`https://quix-assets.s3.amazonaws.com/svg-icons/${chipData.symbol}.svg`}
               alt="icon"
               width={30}
               height={30}

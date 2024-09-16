@@ -130,8 +130,7 @@ export function SwapUI({ market }: { market: string }) {
                         Limit Quantity
                       </div>
                       <div className="text-xs font-medium text-baseTextHighEmphasis">
-                        {(quantity && Number(quantity) / Number(assetPrice)) ||
-                          "00.00"}
+                        {(quantity && (Number(quantity) / Number(assetPrice)).toFixed(6)) || "00.00"}
                       </div>
                     </div>
                     <div className="flex justify-between">
