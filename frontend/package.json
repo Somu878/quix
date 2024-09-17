@@ -9,7 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-toast": "^1.2.1",
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
+    "@supabase/auth-helpers-react": "^0.3.1",
+    "@supabase/auth-ui-react": "^0.2.8",
+    "@supabase/ssr": "^0.5.1",
+    "@supabase/supabase-js": "^2.8.0",
     "axios": "^1.7.5",
     "chart.js": "^4.4.4",
     "class-variance-authority": "^0.7.0",
@@ -22,6 +29,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
     "recoil": "^0.7.7",
+    "supabase": "^1.192.5",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7"
   },

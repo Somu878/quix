@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
 //@ts-ignore
 import { ArrowRight, BarChart2, Lock, Zap } from "lucide-react";
 import Link from "next/link";

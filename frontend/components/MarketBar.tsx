@@ -132,7 +132,7 @@ function Tickers({ market }: { market: string }) {
           decoding="async"
           data-nimg="1"
           className="z-10 rounded-full h-6 w-6 mt-4 outline-baseBackgroundL1"
-          src={`https://backpack.exchange/coins/${asset.toLowerCase()}.svg`}
+          src={`https://quix-assets.s3.amazonaws.com/svg-icons/${asset}.svg`}
         />
         <Image
           alt="USDC Logo"
@@ -142,7 +142,7 @@ function Tickers({ market }: { market: string }) {
           decoding="async"
           data-nimg="1"
           className="h-6 w-6 -ml-2 mt-4 rounded-full"
-          src={`https://backpack.exchange/coins/${m.toLowerCase()}.svg`}
+          src={`https://quix-assets.s3.amazonaws.com/svg-icons/${m}.svg`}
         />
       </div>
       <button type="button" className="react-aria-Button" data-rac="">

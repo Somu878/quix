@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import Image from "next/image";
 import { useRecoilValue } from "recoil";
 import { currentState } from "@/lib/store/atom";
-import { formatCurrency } from "@/utils/helpers";
+// import { formatCurrency } from "@/utils/helpers";
 export function SwapUI({ market }: { market: string }) {
   const assetPrice = useRecoilValue(currentState);
   const [quantity, setQuantity] = useState<string>();
@@ -11,6 +11,7 @@ export function SwapUI({ market }: { market: string }) {
   const [activeTab, setActiveTab] = useState("Buy");
   const [type, setType] = useState("limit");
   const [asset, m] = market.split("_");
+  console.log(assetPrice)
   return (
     <div>
       <div className="flex flex-col">
