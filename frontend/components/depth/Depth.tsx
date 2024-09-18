@@ -10,6 +10,7 @@ import {
 import { BidTable } from "./BidTable";
 import { AskTable } from "./AsksTable";
 import TradesTable from "./TradesTable";
+import { SignalingManager } from "@/utils/SignalManager";
 
 export function Depth({ market }: { market: string }) {
   const [bids, setBids] = useState<[string, string][]>();
@@ -21,12 +22,28 @@ export function Depth({ market }: { market: string }) {
     getDepth(market).then((d) => {
       setBids(d.bids.reverse());
       setAsks(d.asks);
-    });
-
+    })
     getTicker(market).then((t) => setPrice(t.lastPrice));
+    // SignalingManager.getInstance().registerCallback("depth", (data: any) => {
+    //   setBids(data.bids);
+    //   setAsks(data.asks);
+    // }, `DEPTH-${market}`);
+    // SignalingManager.getInstance().sendMessage({
+    //   method: "SUBSCRIBE",
+    //   params: [`depth.${market}`],
     // getTrades(market).then(t => setPrice(t[0].price));
     // getKlines(market, "1h", 1640099200, 1640100800).then(t => setPrice(t[0].close));
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // return () => {
+    //   SignalingManager.getInstance().deRegisterCallback(
+    //     "depth",
+    //     `DEPTH-${market}`
+    //   );
+    //   SignalingManager.getInstance().sendMessage({
+    //     method: "UNSUBSCRIBE",
+    //     params: [`depth.${market}`],
+    //   });
+    // };
   }, []);
 
   return (

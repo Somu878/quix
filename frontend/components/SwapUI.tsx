@@ -3,6 +3,9 @@ import { Dispatch, SetStateAction, useState } from "react";
 import Image from "next/image";
 import { useRecoilValue } from "recoil";
 import { currentState } from "@/lib/store/atom";
+import { useAuthDialog } from "@/context/DialogContext";
+import { getUser } from "@/lib/auth";
+import { useToast } from "@/hooks/use-toast";
 // import { formatCurrency } from "@/utils/helpers";
 export function SwapUI({ market }: { market: string }) {
   const assetPrice = useRecoilValue(currentState);
@@ -11,7 +14,9 @@ export function SwapUI({ market }: { market: string }) {
   const [activeTab, setActiveTab] = useState("Buy");
   const [type, setType] = useState("limit");
   const [asset, m] = market.split("_");
-  console.log(assetPrice)
+  const { isOpen, openDialog, closeDialog } = useAuthDialog();
+  const { toast } = useToast()
+  
   return (
     <div>
       <div className="flex flex-col">
@@ -68,6 +73,22 @@ export function SwapUI({ market }: { market: string }) {
                   />
                   <button
                     type="button"
+                    onClick={async ()=>{
+                      
+                      // const { data: { user } } = await supabase.auth.getUser()
+
+                    if(true){
+                      toast({
+                        title: "Purchase Successful",
+                        description: `You have successfully purchased ${Number(quantity)} ${asset}`,
+                     
+                       })
+                                    }
+                    else{
+                      // console.log(user)
+                      openDialog()}
+
+                  }}
                     className={`font-semibold  focus:ring-blue-200 focus:none focus:outline-none text-center h-12 rounded-xl text-base px-4 py-2 my-4  text-white active:scale-98 ${
                       activeTab === "Buy" ? "bg-green-600" : "bg-red-500"
                     }`}
@@ -109,11 +130,12 @@ export function SwapUI({ market }: { market: string }) {
                   />
                   <Percents />
                   <button
+            
                     type="button"
                     className={`font-semibold  focus:ring-blue-200 focus:none focus:outline-none text-center h-12 rounded-xl text-base px-4 py-2 my-4  text-white active:scale-98 ${
                       activeTab === "Buy" ? "bg-green-600" : "bg-red-500"
                     }`}
-                    data-rac=""
+                  
                   >
                     {activeTab}
                   </button>

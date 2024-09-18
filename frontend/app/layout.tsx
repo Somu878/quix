@@ -5,6 +5,7 @@ import Appbar from "@/components/Appbar";
 import DisclaimerModal from "@/components/DisclaimerModel";
 import MobileCheck from "@/components/MobileCheck";
 import { Toaster } from "@/components/ui/toaster"
+import { AuthDialogProvider } from "@/context/DialogContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,10 +23,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <MobileCheck>
+          <AuthDialogProvider>
           <Toaster />
           <Appbar />
           {children}
           <DisclaimerModal />
+          </AuthDialogProvider>
         </MobileCheck>
       </body>
     </html>

@@ -6,7 +6,7 @@ import { SignalingManager } from "@/utils/SignalManager";
 import Image from "next/image";
 import Head from "next/head";
 import { currentState } from "@/lib/store/atom";
-import { atom, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 
 export const MarketBar = ({ market }: { market: string }) => {
   const [ticker, setTicker] = useState<Ticker | null>(null);
