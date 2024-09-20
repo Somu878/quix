@@ -31,16 +31,16 @@ export default function DisclaimerModal() {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <Card className="w-full max-w-md mx-4">
+      <Card className="w-full max-w-md mx-4 bg-black">
         <CardHeader className="flex flex-row items-center">
           <CardTitle className="text-xl font-bold text-red-500">
             Important Disclaimer
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground mb-4">
-            Welcome to Quix - Crypto exchange. Before you proceed, please be
-            aware of the following:
+        <CardContent className="text-white">
+          <p className="text-sm mb-4">
+          <b>  Welcome to Quix - Crypto exchange. Before you proceed, please be
+          aware of the following:</b>
           </p>
           <ul className="list-disc list-inside space-y-2 text-sm">
             <li>
@@ -62,7 +62,7 @@ export default function DisclaimerModal() {
           </ul>
         </CardContent>
         <CardFooter>
-          <Button className="w-full" onClick={handleDismiss}>
+          <Button className="w-full bg-white text-black hover:bg-white/80"   onClick={handleDismiss}>
             I Understand
           </Button>
         </CardFooter>
